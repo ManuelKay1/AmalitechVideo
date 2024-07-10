@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 1200px;
+        }
+        .main-video {
+            flex: 3;
+            text-align: center;
+            margin-right: 20px;
+        }
+        video {
+            width: 100%;
+            height: auto;
+        }
+        .buttons {
+            margin-top: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #likeCount {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .video-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+            max-height: 70vh;
+        }
+        .video-thumbnail {
+            width: 100%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-video">
+            <video id="mainVideoPlayer" controls>
+                <source src="<%= video.videoPath %>" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="buttons">
+                <button id="likeButton">Like</button>
+                <button id="shareButton">Share</button>
+            </div>
+            <div id="likeCount">0 Likes</div>
+        </div>
+        <div class="video-list">
+            <% allVideos.forEach(video => { %>
+                <div class="thumbnail-container">
+                    <video class="video-thumbnail" data-src="<%= video.videoPath %>">
+                        <source src="<%= video.videoPath %>" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    <script>
+        let likeCount = 0;
+
+        document.getElementById('likeButton').addEventListener('click', function() {
+            likeCount++;
+            document.getElementById('likeCount').innerText = `${likeCount} Likes`;
+        });
+
+        document.getElementById('shareButton').addEventListener('click', function() {
+            alert('Share functionality is not implemented yet.');
+        });
+
+        const mainVideoPlayer = document.getElementById('mainVideoPlayer');
+        const videoThumbnails = document.querySelectorAll('.video-thumbnail');
+
+        videoThumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const src = this.getAttribute('data-src');
+                mainVideoPlayer.src = src;
+                mainVideoPlayer.play();
+                
+                // Pause other thumbnails
+                videoThumbnails.forEach(thumb => {
+                    if (thumb !== this) {
+                        thumb.pause();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
