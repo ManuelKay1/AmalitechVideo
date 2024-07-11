@@ -72,3 +72,6 @@ Contributions are welcome! Please open an issue or submit a pull request.
 A DEPLOYMENT LINK
 https://amalitechvideo-1.onrender.com
 
+ER diagram
+![Screenshot (11)](https://github.com/ManuelKay1/AmalitechVideo/assets/174375483/6dbbf7e8-80cb-4f6c-a80e-03b5702313d7)
+
