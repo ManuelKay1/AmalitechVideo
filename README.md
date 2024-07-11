@@ -73,5 +73,6 @@ A DEPLOYMENT LINK
 https://amalitechvideo-1.onrender.com
 
 ER diagram
+![Screenshot (11)](https://github.com/ManuelKay1/AmalitechVideo/assets/174375483/7af8a587-1fe8-4a9b-9a49-63fa13da95c5)
 
 
